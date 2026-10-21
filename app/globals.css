@@ -1,0 +1,283 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Lireons tokens. Swiss: neutrals carry the page, one signal accent marks the
+ * primary action and anything live. Product hues appear only inside product
+ * visuals so each module is recognisable without colouring the chrome.
+ */
+:root {
+  --paper: oklch(0.974 0.003 255);
+  --surface: oklch(0.995 0.0015 255);
+  --surface-2: oklch(0.955 0.004 255);
+  --inset: oklch(0.935 0.005 255);
+  --ink: oklch(0.19 0.012 262);
+  --ink-2: oklch(0.42 0.012 262);
+  --ink-3: oklch(0.47 0.012 262);
+  --line: oklch(0.89 0.005 262);
+  --line-2: oklch(0.8 0.007 262);
+  --inverse: oklch(0.19 0.012 262);
+  --on-inverse: oklch(0.97 0.003 255);
+
+  --signal: oklch(0.555 0.2 31);
+  --signal-hover: oklch(0.5 0.19 31);
+  --signal-soft: oklch(0.965 0.022 31);
+  --on-signal: oklch(0.99 0.005 31);
+
+  --ok: oklch(0.5 0.12 155);
+  --ok-soft: oklch(0.95 0.035 155);
+  --warn: oklch(0.68 0.14 70);
+  --warn-soft: oklch(0.96 0.04 80);
+
+  /* product hues */
+  --p-academy: oklch(0.5 0.15 258);
+  --p-academy-soft: oklch(0.95 0.025 258);
+  --p-assess: oklch(0.53 0.13 58);
+  --p-assess-soft: oklch(0.96 0.035 70);
+  --p-ai: oklch(0.5 0.14 295);
+  --p-ai-soft: oklch(0.95 0.025 295);
+
+  /* neo-brutalist edge: hard borders and offset shadows on interactive surfaces */
+  --edge: oklch(0.17 0.012 262);
+  --glass: oklch(0.995 0.0015 255 / 0.8);
+  /* slab: the one dark band per page; stays dark in both themes */
+  --slab: oklch(0.19 0.012 262);
+  --on-slab: oklch(0.97 0.003 255);
+  --glass-line: oklch(1 0 0 / 0.7);
+
+  --shadow-1: 0 1px 2px oklch(0.2 0.02 262 / 0.06);
+  --shadow-2: 0 1px 2px oklch(0.2 0.02 262 / 0.05), 0 8px 24px -8px oklch(0.2 0.02 262 / 0.12);
+  --shadow-3: 0 2px 4px oklch(0.2 0.02 262 / 0.04), 0 24px 56px -16px oklch(0.2 0.02 262 / 0.22);
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.dark {
+  --paper: oklch(0.165 0.006 262);
+  --surface: oklch(0.205 0.007 262);
+  --surface-2: oklch(0.235 0.008 262);
+  --inset: oklch(0.255 0.009 262);
+  --ink: oklch(0.965 0.003 255);
+  --ink-2: oklch(0.78 0.008 262);
+  --ink-3: oklch(0.68 0.01 262);
+  --line: oklch(0.3 0.009 262);
+  --line-2: oklch(0.38 0.01 262);
+  --inverse: oklch(0.965 0.003 255);
+  --on-inverse: oklch(0.18 0.01 262);
+
+  --signal: oklch(0.67 0.19 33);
+  --signal-hover: oklch(0.72 0.17 33);
+  --signal-soft: oklch(0.265 0.05 31);
+  --on-signal: oklch(0.16 0.02 31);
+
+  --ok: oklch(0.72 0.14 155);
+  --ok-soft: oklch(0.3 0.05 155);
+  --warn: oklch(0.78 0.13 75);
+  --warn-soft: oklch(0.32 0.05 75);
+
+  --p-academy: oklch(0.72 0.13 258);
+  --p-academy-soft: oklch(0.29 0.05 258);
+  --p-assess: oklch(0.8 0.13 70);
+  --p-assess-soft: oklch(0.31 0.05 70);
+  --p-ai: oklch(0.74 0.12 295);
+  --p-ai-soft: oklch(0.29 0.05 295);
+
+  /* dark: a mid grey edge; white offset shadows read as misregistration */
+  --edge: oklch(0.6 0.01 262);
+  --glass: oklch(0.225 0.008 262 / 0.86);
+  --slab: oklch(0.235 0.012 262);
+  --on-slab: oklch(0.965 0.003 255);
+  --glass-line: oklch(1 0 0 / 0.1);
+
+  --shadow-1: 0 1px 2px oklch(0 0 0 / 0.3);
+  --shadow-2: 0 1px 2px oklch(0 0 0 / 0.3), 0 8px 24px -8px oklch(0 0 0 / 0.5);
+  --shadow-3: 0 2px 4px oklch(0 0 0 / 0.3), 0 24px 56px -16px oklch(0 0 0 / 0.6);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-inset: var(--inset);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-line: var(--line);
+  --color-line-2: var(--line-2);
+  --color-edge: var(--edge);
+  --color-slab: var(--slab);
+  --color-on-slab: var(--on-slab);
+  --color-inverse: var(--inverse);
+  --color-on-inverse: var(--on-inverse);
+  --color-signal: var(--signal);
+  --color-signal-hover: var(--signal-hover);
+  --color-signal-soft: var(--signal-soft);
+  --color-on-signal: var(--on-signal);
+  --color-ok: var(--ok);
+  --color-ok-soft: var(--ok-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-academy: var(--p-academy);
+  --color-academy-soft: var(--p-academy-soft);
+  --color-assess: var(--p-assess);
+  --color-assess-soft: var(--p-assess-soft);
+  --color-ai: var(--p-ai);
+  --color-ai-soft: var(--p-ai-soft);
+
+  --shadow-1: var(--shadow-1);
+  --shadow-2: var(--shadow-2);
+  --shadow-3: var(--shadow-3);
+
+  --ease-out: var(--ease-out);
+  --ease-in-out: var(--ease-in-out);
+
+  /*
+   * Type scale. One family (Archivo) carries everything; contrast comes from
+   * size, weight and width. Marketing copy never goes below text-meta (13px);
+   * smaller sizes are allowed only inside product UI mock-ups.
+   */
+  --text-meta: 0.8125rem;
+  --text-meta--line-height: 1.4;
+  --text-ui: 0.9375rem;
+  --text-ui--line-height: 1.45;
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.6;
+  --text-lead: clamp(1.125rem, 1rem + 0.45vw, 1.3125rem);
+  --text-lead--line-height: 1.5;
+  --text-mega: clamp(3rem, 1.5rem + 6.4vw, 7.5rem);
+  --text-mega--line-height: 0.92;
+  --text-mega--letter-spacing: -0.05em;
+  --text-mega--font-weight: 560;
+  --text-d1: clamp(2.5rem, 1.5rem + 3.9vw, 5rem);
+  --text-d1--line-height: 0.98;
+  --text-d1--letter-spacing: -0.045em;
+  --text-d1--font-weight: 560;
+  --text-d2: clamp(2rem, 1.4rem + 2.4vw, 3.5rem);
+  --text-d2--line-height: 1.02;
+  --text-d2--letter-spacing: -0.038em;
+  --text-d2--font-weight: 560;
+  --text-d3: clamp(1.5rem, 1.2rem + 1.15vw, 2.125rem);
+  --text-d3--line-height: 1.1;
+  --text-d3--letter-spacing: -0.028em;
+  --text-d3--font-weight: 560;
+  --text-h3: 1.5rem;
+  --text-h3--line-height: 1.2;
+  --text-h3--letter-spacing: -0.02em;
+  --text-h3--font-weight: 560;
+  --text-h4: 1.25rem;
+  --text-h4--line-height: 1.25;
+  --text-h4--letter-spacing: -0.015em;
+  --text-h4--font-weight: 560;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.6;
+  }
+  ::selection { background: var(--signal); color: var(--on-signal); }
+  :focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; border-radius: 6px; }
+  h1, h2, h3, h4 { text-wrap: balance; }
+  p { text-wrap: pretty; }
+}
+
+@layer components {
+  .wrap { width: 100%; max-width: 82rem; margin-inline: auto; padding-inline: max(1rem, env(safe-area-inset-left)); }
+  @media (min-width: 768px) { .wrap { padding-inline: 2rem; } }
+  @media (min-width: 1280px) { .wrap { padding-inline: 2.5rem; } }
+  .num { font-variant-numeric: tabular-nums; }
+  /* Section marker: a small square and a name, set in ink so it reads as navigation, not as fine print. */
+  /* Small caption inside product UI and data: field names, column heads. */
+  .label { font-size: 0.8125rem; line-height: 1.2; font-weight: 500; color: var(--ink-3); letter-spacing: 0; }
+  /* Section marker: a small square and a name, set in ink so it reads as navigation, not as fine print. */
+  .marker { display: inline-flex; align-items: center; gap: 0.625rem; font-size: 0.875rem; line-height: 1.2; font-weight: 520; color: var(--ink); letter-spacing: 0; }
+  .marker::before { content: ""; width: 0.5rem; height: 0.5rem; background: currentColor; border-radius: 1px; flex: none; }
+  /* Figures used as focal points: wide, light and tabular. */
+  .figure { font-stretch: 112%; font-weight: 440; letter-spacing: -0.05em; line-height: 0.9; font-variant-numeric: tabular-nums; }
+  .skeleton {
+    background: linear-gradient(90deg, var(--inset) 0%, var(--surface-2) 50%, var(--inset) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.4s linear infinite;
+  }
+  /* Glass: frosted surface for panels that float over colour. */
+  .glass {
+    background: var(--glass);
+    -webkit-backdrop-filter: blur(22px) saturate(160%);
+    backdrop-filter: blur(22px) saturate(160%);
+    box-shadow: inset 0 1px 0 var(--glass-line), inset 0 0 0 1px var(--glass-line), var(--shadow-3);
+  }
+  /* Brutal: hard edge plus offset shadow, for surfaces that should feel tactile. */
+  .brutal { border: 1.5px solid var(--edge); box-shadow: 4px 4px 0 0 var(--edge); }
+  /* Showcase frame: the hard-edged container every product demo sits in. */
+  .frame { border: 1.5px solid var(--edge); border-radius: 28px; box-shadow: 6px 6px 0 0 var(--edge); }
+  /* Selected state for every segmented control and pill toggle. */
+  .seg-on { background: var(--surface); box-shadow: inset 0 0 0 1.5px var(--edge), 2px 2px 0 0 var(--edge); }
+  .scrollbar-none { scrollbar-width: none; }
+  .scrollbar-none::-webkit-scrollbar { display: none; }
+}
+
+@keyframes shimmer { to { background-position: -200% 0; } }
+@keyframes marquee { to { transform: translateX(-50%); } }
+@keyframes dash { to { stroke-dashoffset: -24; } }
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes pulse-ring { 0% { transform: scale(0.6); opacity: 0.6; } 100% { transform: scale(2.2); opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; }
+}
+@keyframes ride { from { transform: translateX(0%); } to { transform: translateX(100%); } }
+@keyframes slide { from { transform: translate(18px, -6.75px); } to { transform: translate(-30px, 11.25px); } }
+@keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes scan { 0% { transform: translateY(-100%); } 100% { transform: translateY(400%); } }
+
+/* Entrance animations in CSS so above-the-fold content paints before hydration (LCP). */
+@keyframes enter-rise { from { transform: translateY(108%); } to { transform: none; } }
+@keyframes enter-fade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.enter-rise { animation: enter-rise 0.85s var(--ease-out) both; }
+.enter-fade { animation: enter-fade 0.6s var(--ease-out) both; }
+@keyframes enter-opacity { from { opacity: 0; } to { opacity: 1; } }
+.enter-opacity { animation: enter-opacity 0.8s var(--ease-out) both; }
+@keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@keyframes ring { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes drift { 0%, 100% { transform: translate(0, 0) rotate(0deg); } 33% { transform: translate(14px, -10px) rotate(2deg); } 66% { transform: translate(-10px, 12px) rotate(-1.5deg); } }
+
+/* cursor reveal radius for <Backdrop live>; registered so it can transition */
+@property --mr {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+/* Photo two-tone (components/ui/Photo.tsx tone="duo"): greys mapped onto ink and paper.
+   Fixed duo colours so the photo never inverts into a negative in dark mode. */
+:root { --duo-ink: oklch(0.21 0.014 262); --duo-paper: oklch(0.955 0.006 255); }
+.dark { --duo-ink: oklch(0.13 0.008 262); --duo-paper: oklch(0.86 0.008 255); }
+.photo-duo { background: var(--duo-ink); isolation: isolate; }
+.photo-duo .photo-img { filter: grayscale(1) contrast(1.08) brightness(1.04); mix-blend-mode: screen; transition: filter 0.5s var(--ease-out), mix-blend-mode 0s; }
+.photo-duo .photo-duo-paper { background: var(--duo-paper); mix-blend-mode: multiply; transition: opacity 0.5s var(--ease-out); }
+.group:hover .photo-duo .photo-img, .group:focus-visible .photo-duo .photo-img, .group:focus-within .photo-duo .photo-img { filter: none; mix-blend-mode: normal; }
+.group:hover .photo-duo .photo-duo-paper, .group:focus-visible .photo-duo .photo-duo-paper, .group:focus-within .photo-duo .photo-duo-paper { opacity: 0; }
+@media (hover: none) { .photo-duo .photo-img { filter: none; mix-blend-mode: normal; } .photo-duo .photo-duo-paper { opacity: 0; } }
+
+/* Hero render entrance: rises from a steep lean and settles (CSS, so it runs before hydration). */
+@keyframes hero-rise { from { opacity: 0; transform: translateY(72px) rotateX(14deg); } to { opacity: 1; transform: none; } }
+.hero-rise { animation: hero-rise 1.1s var(--ease-out) 0.2s both; transform-origin: 50% 100%; }
