@@ -61,7 +61,7 @@ export function Hero() {
   return (
     <section ref={section} aria-labelledby="hero-title" className="relative isolate overflow-x-clip pt-24 md:pt-28">
       <div className="wrap">
-        <p className="enter-fade flex flex-wrap items-center gap-x-3 gap-y-2 text-ui text-ink-2">
+        <p className="enter-fade flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-ui text-ink-2 text-center">
           <span className="flex gap-1" aria-hidden>
             {products.map((p, i) => (
               <motion.span key={p.id} initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.1 + i * 0.06, type: "spring", visualDuration: 0.35, bounce: 0.3 }} className="size-2.5 rounded-[3px]" style={{ background: productColor[p.id] }} />
@@ -70,7 +70,7 @@ export function Hero() {
           For K-12 schools, coaching centres and online academies
         </p>
 
-        <h1 id="hero-title" className="mt-5 text-[clamp(2.75rem,1rem+6.6vw,7rem)] font-[560] leading-[0.92] tracking-[-0.05em] [font-stretch:108%]">
+        <h1 id="hero-title" className="mt-5 text-center text-[clamp(2.75rem,1rem+6.6vw,7rem)] font-[560] leading-[0.92] tracking-[-0.05em] [font-stretch:108%]">
           {lines.map((l, i) => (
             <span key={l} className="block overflow-hidden pb-[0.07em]">
               <span className="enter-rise block" style={{ animationDelay: `${0.08 + i * 0.09}s` }}>
@@ -79,11 +79,11 @@ export function Hero() {
             </span>
           ))}
         </h1>
-        <div style={{ animationDelay: "0.3s" }} className="enter-fade mt-6 flex flex-col gap-6 md:flex-row md:items-end md:justify-between md:gap-10">
-          <p className="max-w-[44ch] text-lead text-ink-2">
+        <div style={{ animationDelay: "0.3s" }} className="enter-fade mt-6 flex flex-col items-center text-center md:mt-8">
+          <p className="max-w-[48ch] text-lead text-ink-2">
             Courses, live classes, proctored tests and doubts write to one learner record. Nobody types anything twice.
           </p>
-          <div className="flex flex-wrap gap-3 sm:flex-nowrap">
+          <div className="mt-7 flex flex-wrap items-center justify-center gap-3 sm:flex-nowrap md:mt-8">
             <Magnetic><ButtonLink href="/demo" size="lg">Book a demo</ButtonLink></Magnetic>
             <ButtonLink href="#products" size="lg" variant="outline" icon={<ArrowDown className="size-4" />}>See the products</ButtonLink>
           </div>
@@ -91,7 +91,7 @@ export function Hero() {
       </div>
 
       {/* the composition: mesh stage bleeding off the right edge, app render on it, phone in front */}
-      <div className="wrap relative mt-10 md:mt-12" onPointerMove={onMove} onPointerLeave={onLeave}>
+      <div className="wrap relative mt-12 md:mt-16" onPointerMove={onMove} onPointerLeave={onLeave}>
         <div className="relative mr-[calc(50%-50vw)]">
           <div className="enter-opacity relative isolate h-[440px] overflow-hidden rounded-l-[28px] border-[1.5px] border-r-0 border-edge sm:h-[520px] md:h-[clamp(480px,43vw,620px)]">
             <MeshField palette="brand" follow />
